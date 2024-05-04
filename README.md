@@ -25,14 +25,13 @@ The goal is to make it easy to template and write views on the rust side of the 
 
 To get started load htmx and the extention (main.js for now) then register the extention using `hx-ext`
 
-```
+```html
 <head>
     ...
     <script type="module" src="/main.js" defer></script>
     <script type="module" src="/htmx.js" defer></script>
 </head>
-<body hx-ext="tauri">
-</body>
+<body hx-ext="tauri"></body>
 ```
 
 ### Invoke
@@ -104,4 +103,5 @@ This uses the `event.listen()` tauri function and will use htmx to swap the inne
 ## Notes
 
 When it comes to rust templating [shtml](https://github.com/swlkr/shtml) is pretty nice, but there are other options.
+
 Also checkout the [SHAT STACK](https://github.com/ChristianPavilonis/shat-stack) a full stack rust/htmx app template using shtml, htmx, axum, and tailwind. (also a wip)
