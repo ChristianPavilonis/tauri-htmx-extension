@@ -2,7 +2,18 @@
 
 ## WIP
 
-This is a work in progress htmx extention for tauri.
+This is a work in progress htmx extention for tauri. Will later distribute properly, but feel free to look around.
+
+## Development
+
+To start development run the tauri dev I reccomend you install the cli via cargo.
+
+Note this repo is using tauri 2.0 beta
+
+```bash
+cargo install tauri-cli
+cargo tauri dev
+```
 
 ### Goals
 
@@ -86,5 +97,11 @@ This uses the `event.listen()` tauri function and will use htmx to swap the inne
 
 ## Todos
 
--   emit events
+-   emit events from htmx
 -   emit to specific windows
+-   finish todo list
+
+## Notes
+
+When it comes to rust templating [shtml](https://github.com/swlkr/shtml) is pretty nice, but there are other options.
+Also checkout the [SHAT STACK](https://github.com/ChristianPavilonis/shat-stack) a full stack rust/htmx app template using shtml, htmx, axum, and tailwind. (also a wip)
