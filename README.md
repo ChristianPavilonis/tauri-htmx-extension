@@ -2,7 +2,7 @@
 
 ## WIP
 
-This is a work in progress htmx extention for tauri. Will later distribute properly, but feel free to look around.
+This is a work in progress htmx extension for tauri. Will later distribute properly, but feel free to look around.
 
 ## Development
 
