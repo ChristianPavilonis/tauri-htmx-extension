@@ -23,7 +23,7 @@ The goal is to make it easy to template and write views on the rust side of the 
 
 ### Setup
 
-To get started load htmx and the extention (main.js for now) then register the extention using `hx-ext`
+To get started load htmx and the extension (main.js for now) then register the extension using `hx-ext`
 
 ```html
 <head>
