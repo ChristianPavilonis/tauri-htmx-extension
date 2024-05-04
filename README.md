@@ -6,7 +6,7 @@ This is a work in progress htmx extension for tauri. Will later distribute prope
 
 ## Development
 
-To start development run the tauri dev I reccomend you install the cli via cargo.
+To start development run the tauri dev command I reccomend you install the cli via cargo.
 
 Note this repo is using tauri 2.0 beta
 
