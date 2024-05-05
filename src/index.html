@@ -21,8 +21,20 @@
         <!-- </form> -->
         <!-- <div id="meetme"></div> -->
 
-        <button tauri-invoke="background_stuff">Do Background stuff</button>
+        <!-- <button tauri-invoke="background_stuff">Do Background stuff</button> -->
+        <!---->
+        <!-- <div tauri-listen="progress"></div> -->
 
-        <div tauri-listen="progress"></div>
+        <form
+            tauri-emit="stop"
+            hx-target="#meetme"
+            style="display: flex; flex-direction: column; max-width: 300px"
+        >
+            <label for="name"> Name </label>
+            <input type="text" name="name" />
+            <button type="submit">join forces</button>
+        </form>
+
+        <div tauri-listen="tick"></div>
     </body>
 </html>

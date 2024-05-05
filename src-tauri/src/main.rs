@@ -1,4 +1,9 @@
-use std::{thread, time::Duration};
+use std::{
+    fmt::format,
+    sync::atomic::{AtomicBool, Ordering},
+    thread,
+    time::Duration,
+};
 
 use tauri::{AppHandle, Manager};
 
@@ -19,9 +24,31 @@ fn meet(name: &str) -> String {
 }
 
 fn main() {
-    tauri::Builder::default()
+    static STOP: AtomicBool = AtomicBool::new(false);
+
+    let app = tauri::Builder::default()
         .plugin(tauri_plugin_shell::init())
         .invoke_handler(tauri::generate_handler![meet, background_stuff])
-        .run(tauri::generate_context!())
-        .expect("error while running tauri application");
+        .build(tauri::generate_context!())
+        .expect("error while building tauri application");
+
+    app.run(|app_handle, event| match event {
+        tauri::RunEvent::Ready => {
+            app_handle.listen("stop", |event| {
+                println!("{:?}", event);
+                STOP.store(true, Ordering::Relaxed);
+            });
+            let app = app_handle.clone();
+            thread::spawn(move || {
+                let mut count = 0;
+                while !STOP.load(Ordering::Relaxed) {
+                    count += 1;
+                    app.emit("tick", format!("tick: {count}")).unwrap();
+
+                    thread::sleep(Duration::from_secs(1));
+                }
+            });
+        }
+        _ => {}
+    });
 }

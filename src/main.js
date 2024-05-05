@@ -1,5 +1,5 @@
 const { invoke } = window.__TAURI__.core;
-const { listen } = window.__TAURI__.event;
+const { listen, emit, emitTo } = window.__TAURI__.event;
 
 /** @type {import("./htmx").HtmxInternalApi} */
 let api;
@@ -16,6 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 case "htmx:load":
                     registerInvokeTiggers(parent);
                     registerTauriListeners(parent);
+                    registerTauriEmitters(parent);
                     break;
             }
         },
@@ -79,4 +80,24 @@ function registerTauriListeners(parent) {
             api.settleImmediately(settleInfo.tasks);
         });
     });
+}
+
+function registerTauriEmitters(parent) {
+    parent.querySelectorAll("[tauri-emit]").forEach((el) => {
+        let nodeData = api.getInternalData(el);
+        let triggerSpecs = api.getTriggerSpecs(el);
+
+        triggerSpecs.forEach((ts) => {
+            api.addTriggerHandler(el, ts, nodeData, () => {
+                callEmit(el);
+            });
+        });
+    });
+}
+
+function callEmit(el) {
+    let eventName = api.getAttributeValue(el, "tauri-emit");
+    let input = api.getInputValues(el);
+
+    emit(eventName, input.values);
 }
