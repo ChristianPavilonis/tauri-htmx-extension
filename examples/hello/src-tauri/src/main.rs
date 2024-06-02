@@ -5,7 +5,7 @@ use std::{
     time::Duration,
 };
 
-use tauri::{AppHandle, Manager};
+use tauri::{AppHandle, Manager, WebviewWindowBuilder};
 
 #[tauri::command]
 fn background_stuff(app: AppHandle) {
@@ -20,7 +20,7 @@ fn background_stuff(app: AppHandle) {
 
 #[tauri::command]
 fn meet(name: &str) -> String {
-    format!("htmx, meet {}", name)
+    format!("<div id=\"meetme\" hx-swap-oob=\"true\">htmx, meet {}</div>", name)
 }
 
 fn main() {

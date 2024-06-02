@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>tauri + htmx</title>
+        <script type="module" src="tauri-ext.js" defer></script>
+        <script type="module" src="htmx.js" defer></script>
+    </head>
+
+    <body hx-ext="tauri">
+        <div hx-ext="debug">
+            <form
+                tauri-invoke="meet"
+                hx-swap="none"
+                style="display: flex; flex-direction: column; max-width: 300px"
+            >
+                <label for="name"> Name </label>
+                <input type="text" name="name" />
+                <button type="submit">join forces</button>
+            </form>
+        </div>
+        <div id="meetme" hx-swap-oob="true"></div>
+
+        <button tauri-invoke="background_stuff">Do Background stuff</button>
+
+        <div tauri-listen="progress"></div>
+
+        <form
+            tauri-emit="stop"
+            hx-target="#meetme"
+            style="display: flex; flex-direction: column; max-width: 300px"
+        >
+            <label for="name"> Name </label>
+            <input type="text" name="name" />
+            <button type="submit">join forces</button>
+        </form>
+
+        <div tauri-listen="tick"></div>
+    </body>
+</html>
