@@ -27,8 +27,13 @@ function registerInvokeTiggers(parent) {
   parent.querySelectorAll("[tauri-invoke]").forEach((el) => {
     let nodeData = api.getInternalData(el);
     let triggerSpecs = api.getTriggerSpecs(el);
+    console.log(triggerSpecs);
 
     triggerSpecs.forEach((ts) => {
+      // since we're already in the load event we call it now
+      if (ts.trigger === "load") {
+        callInvoke(el);
+      }
       api.addTriggerHandler(el, ts, nodeData, () => {
         callInvoke(el);
       });

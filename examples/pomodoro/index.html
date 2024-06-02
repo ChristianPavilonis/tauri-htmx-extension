@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="/src/styles.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tauri App</title>
+        <script type="module" src="/src/tauri-ext.js" defer></script>
+        <script type="module" src="/src/htmx.js" defer></script>
+    </head>
+
+    <body hx-ext="tauri">
+        <div tauri-invoke="load_main_layout" hx-trigger="load"></div>
+    </body>
+</html>
