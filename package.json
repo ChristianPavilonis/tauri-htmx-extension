@@ -1,0 +1,19 @@
+{
+  "name": "tauri-htmx",
+  "version": "1.0.0",
+  "description": "htmx extention for tauri apps",
+  "main": "src/tauri-ext.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "dist": "cp -r src/* dist/ && npm run-script uglify && gzip -9 -k -f dist/tauri-ext.min.js > dist/tauri-ext.min.js.gz && exit",
+    "uglify": "uglifyjs -m eval -o dist/tauri-ext.min.js dist/tauri-ext.js",
+    "test": "echo \"Tests? we don't have tests, we don't need tests, we don't have no stinking tests!\" && exit 1"
+  },
+  "author": "Christian Pav",
+  "license": "GLWTS",
+  "dependencies": {
+    "uglify-js": "^3.18.0"
+  }
+}
