@@ -4,14 +4,14 @@
 
 This is a work in progress htmx extension for tauri. Will later distribute properly, but feel free to look around.
 
-## Development
+## Examples
 
-To start development run the tauri dev command I reccomend you install the cli via cargo.
+To use the examples clone the repo, cd into the example, you'll have to create a hard link to the htmx.js and tauri-ext.js files.
+```sh
+cd examples/hello
+ln ../htmx.js src/
+ln ../../src/tauri-ext.js src/
 
-Note this repo is using tauri 2.0 beta
-
-```bash
-cargo install tauri-cli
 cargo tauri dev
 ```
 
@@ -23,12 +23,13 @@ The goal is to make it easy to template and write views on the rust side of the 
 
 ### Setup
 
-To get started load htmx and the extension (main.js for now) then register the extension using `hx-ext`
+
+To get started copy htmx and the tauri-ext.js files into your src folder, then load htmx and the extension, then register the extension using `hx-ext`
 
 ```html
 <head>
     ...
-    <script type="module" src="/main.js" defer></script>
+    <script type="module" src="/tauri-ext.js" defer></script>
     <script type="module" src="/htmx.js" defer></script>
 </head>
 <body hx-ext="tauri"></body>
@@ -93,12 +94,6 @@ fn do_stuff(app: AppHandle) {
 ```
 
 This uses the `event.listen()` tauri function and will use htmx to swap the innerHTML of the div. You can still use hx-target.
-
-## Todos
-
--   emit events from htmx
--   emit to specific windows
--   finish todo list
 
 ## Notes
 
