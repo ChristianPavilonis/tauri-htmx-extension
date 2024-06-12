@@ -1,9 +1,5 @@
 # Tauri + htmx
 
-## WIP
-
-This is a work in progress htmx extension for tauri. Will later distribute properly, but feel free to look around.
-
 ## Examples
 
 To use the examples clone the repo, cd into the example, you'll have to create a hard link to the htmx.js and tauri-ext.js files.
