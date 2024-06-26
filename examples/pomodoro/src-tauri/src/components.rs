@@ -6,7 +6,7 @@ use shtml::{html, Component, Elements, Render};
 
 pub fn Layout() -> Component {
     html! {
-        <div>
+        <div class="bg-gray-800 text-white min-h-[100vh] flex justify-center items-center">
            <Main /> 
         </div>
     }
@@ -14,13 +14,18 @@ pub fn Layout() -> Component {
 
 pub fn Main() -> Component {
     html! {
-        <form tauri-invoke="set_task_description">
-            <input type="text" name="description" />
-            <button type="submit">Set</button>
-        </form>
         <div>
-            <button tauri-invoke="pomodoro">Start</button>
-            <div tauri-listen="tick"></div>
+            <form tauri-invoke="set_task_description" class="flex flex-col space-y-4 mb-8">
+                <label for="description"> Whatcha working on? </label>
+                <input type="text" name="description" class="bg-gray-400 text-black" />
+                <button type="submit" class="bg-gray-700">Set</button>
+            </form>
+            <div>
+                <button tauri-invoke="pomodoro" hx-swap="outerHTML" class="bg-gray-700 p-2">
+                    Start working
+                </button>
+                <div tauri-listen="tick"></div>
+            </div>
         </div>
     }
 }
@@ -35,15 +40,15 @@ fn format_seconds(mut seconds: u32) -> String {
 pub fn Timer(seconds: u32, pomodoros: u16) -> Component {
     html! {
         <div>
-            <p>{format_seconds(seconds)}</p>
-            <p>{format!("{pomodoros} completed pomodoros")}</p>
+            <p class="text-3xl">{format_seconds(seconds)}</p>
+            <p class="text-lg">{format!("{pomodoros} completed pomodoros")}</p>
         </div>
     }
 }
 
 pub fn TaskDescription(description: &str) -> Component {
     html! {
-        <p>
+        <p class="text-xl">
             {description}
         </p>
     }

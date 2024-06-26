@@ -10,12 +10,12 @@ use tokio::time::sleep;
 mod components;
 
 #[tauri::command]
-async fn pomodoro(window: Window) -> Result<(), String> {
+async fn pomodoro(window: Window) -> Result<String, String> {
     tokio::spawn(async move {
         start_timer(window).await;
     });
 
-    Ok(())
+    Ok("<span></span>".to_string())
 }
 #[tauri::command]
 fn set_task_description(description: &str) -> String {
