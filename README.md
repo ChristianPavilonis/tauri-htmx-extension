@@ -26,7 +26,7 @@ To get started copy htmx and the tauri-ext.js files into your src folder, then l
 <head>
     ...
     <script type="module" src="/tauri-ext.js" defer></script>
-    <script type="module" src="/htmx.js" defer></script>
+    <script src="/htmx.js" defer></script>
 </head>
 <body hx-ext="tauri"></body>
 ```
