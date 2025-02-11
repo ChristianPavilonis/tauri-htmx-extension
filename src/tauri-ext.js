@@ -50,13 +50,7 @@ function callInvoke(el) {
 
   invoke(handle, input.values).then((response) => {
     if (response) {
-      api.selectAndSwap(
-        swapSpec.swapStyle,
-        target,
-        el,
-        response,
-        settleInfo,
-      );
+      api.swap(target, response, swapSpec);
     }
 
     api.settleImmediately(settleInfo.tasks);
@@ -73,13 +67,7 @@ function registerTauriListeners(parent) {
       let target = api.getTarget(el);
 
       if (payload) {
-        api.selectAndSwap(
-          swapSpec.swapStyle,
-          target,
-          el,
-          payload,
-          settleInfo,
-        );
+        api.swap(target, payload, swapSpec);
       }
 
       api.settleImmediately(settleInfo.tasks);
